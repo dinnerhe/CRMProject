@@ -15,5 +15,6 @@ namespace Antra.CRMApp.Infrastructure.Data
         }
 
         public DbSet<Vendor> Vendor { get; set; }
+        public DbSet<Shipper> Shipper { get; set; }
     }
 }
