@@ -1,0 +1,14 @@
+1. Whats the difference between List, IEnumerable and IQueryable?
+
+List allows us to add/remove/update items in a specific postion of the collection.
+
+IEnumerable also stores data and we can read data using iteration, but we can't add or delete items in the IEnumerable.
+When executing the array, it will perform filter(e.g. WHERE) on client side.
+
+IQueryable is similar to IEnumerable, but it performs filter in server side 
+so it may save some system resources when executing the query.
+
+2. What's the difference between database first approach and code first approach.
+Code first approach allows developers to create databases using entity classes.
+In database first approach, developers will first create the database before writing,
+an create entity data models using database later on.
