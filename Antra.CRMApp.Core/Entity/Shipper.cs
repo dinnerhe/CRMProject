@@ -12,11 +12,11 @@ namespace Antra.CRMApp.Core.Entity
         public int Id { get; set; }
         
         [Required(ErrorMessage ="Name is required")]
-        [Column(TypeName = "nvarchar(40)")]
+        [Column(TypeName = "varchar(40)")]
         public string Name { get; set; }
         
         [Required(ErrorMessage ="Phone is required")]
-        [Column(TypeName = "nvarchar(24)")]
+        [Column(TypeName = "varchar(24)")]
         public string Phone { get; set; }
     }
 }
