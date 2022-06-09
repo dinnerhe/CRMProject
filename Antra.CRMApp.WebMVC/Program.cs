@@ -5,8 +5,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //dependency injection 
 builder.Services.AddControllersWithViews();
+//for local database
 builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionString("OnlineCRM"));
+//for VM database
+//builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionString("VMCRM"));
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
