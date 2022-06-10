@@ -1,46 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 namespace Antra.CRMApp.Core.Entity
 {
     public class Customer
     {
         public int Id { get; set; }
-        
-        [Required(ErrorMessage ="Name is required")]
-        [Column(TypeName = "varchar(40)")]
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(30)]
         public string Name { get; set; }
-        
-        [Required(ErrorMessage = "Title is required")]
-        [Column(TypeName = "varchar(50)")]
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(30)]
         public string Title { get; set; }
-        
-        [Required(ErrorMessage = "Address is required")]
-        [Column(TypeName = "varchar(50)")]
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(80)]
         public string Address { get; set; }
-
-        [Required(ErrorMessage = "City is required")]
-        [Column(TypeName = "varchar(50)")]
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(20)]
         public string City { get; set; }
-
-        [Required(ErrorMessage = "Region is required")]
         public int RegionId { get; set; }
-        
-        [Required(ErrorMessage = "PostalCode is required")]
-        [Column(TypeName = "varchar(10)")]
-        public string PostalCode { get; set; }
-        
-        [Required(ErrorMessage = "Country is required")]
-        [Column(TypeName = "varchar(50)")]
+        public int PostalCode { get; set; }
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(20)]
         public string Country { get; set; }
-        
-        [Required(ErrorMessage ="Phone is required")]
-        [Column(TypeName = "varchar(24)")]
+        [Required, Column(TypeName = "varchar")]
+        [MaxLength(15)]
         public string Phone { get; set; }
+        public Region Region { get; set; }
     }
 }

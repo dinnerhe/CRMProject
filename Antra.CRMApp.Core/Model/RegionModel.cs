@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-namespace Antra.CRMApp.Core.Entity
+
+namespace Antra.CRMApp.Core.Model
 {
-    public class Region
+    public class RegionModel
     {
         public int Id { get; set; }
-        [Required, Column(TypeName = "varchar"), MaxLength(20)]
+
+        [Required(ErrorMessage ="Name is Required")]
+        [Display(Name ="Enter Name")]
         public string Name { get; set; }
     }
 }
