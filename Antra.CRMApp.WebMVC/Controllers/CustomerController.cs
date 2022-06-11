@@ -51,6 +51,29 @@ namespace Antra.CRMApp.WebMVC.Controllers
             await customerServiceAsync.DeleteCustomerAsync(id);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id) {
+            ViewBag.isEdit = false;
+            var cusModel = await customerServiceAsync.GetByIdAsync(id);
+            var regionCollection = await regionServiceAsync.GetAllAsync();
+            ViewBag.Regions = new SelectList(regionCollection, "Id", "Name");
+            return View(cusModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(CustomerRequestModel model)
+        {
+            ViewBag.IsEdit = false;
+            var collection = await regionServiceAsync.GetAllAsync();
+            ViewBag.Regions = new SelectList(collection, "Id", "Name");
+            if (ModelState.IsValid)
+            {
+                await customerServiceAsync.UpdateCustomerAsync(model);
+                ViewBag.IsEdit = true;
+
+            }
+
+            return View(model);
+        }
     }
 }
 
