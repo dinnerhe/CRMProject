@@ -32,7 +32,8 @@ builder.Services.AddScoped<IRegionServiceAsync, RegionServiceAsync>();
 builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
 builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
 builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
-builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
+builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
+
 
 var app = builder.Build();
 
