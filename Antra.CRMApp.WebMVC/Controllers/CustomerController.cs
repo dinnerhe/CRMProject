@@ -54,7 +54,7 @@ namespace Antra.CRMApp.WebMVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id) {
             ViewBag.isEdit = false;
-            var cusModel = await customerServiceAsync.GetByIdAsync(id);
+            var cusModel = await customerServiceAsync.GetCustomerForEditAsync(id);
             var regionCollection = await regionServiceAsync.GetAllAsync();
             ViewBag.Regions = new SelectList(regionCollection, "Id", "Name");
             return View(cusModel);

@@ -2,7 +2,7 @@
 
 namespace Antra.CRMApp.WebMVC.Models
 {
-    public class Product
+    public class MVCProduct
     {
         public int Id { get; set; }
         

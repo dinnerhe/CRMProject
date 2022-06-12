@@ -2,33 +2,42 @@
     razor is a viewengine, it will convert the C# code to 
     the script code which a browser can understand
 -->
-@model IEnumerable<Product>
+@model IEnumerable<ProductResponseModel>
 <h1>Product index</h1>
+<a asp-action="Create" asp-controller="Product" class="btn bg-success">Add Product</a>
+
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>Option</th>
+            <th>UnitPrice</th>
+            <th>UnitsInStock</th>
+            <th>Discontinued</th>
+            <th>Detail</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         @{
             foreach(var p in Model)
             {
-               <tr>
-               <td>@p.Id</td>
-               <td>@p.Name</td>
-               <td>@p.Color</td>
-               <td>@p.Price</td>
-               <td>
-               <span>
-               <a asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id" >Edit</a>
-               </span>
-               </td>
-               </tr> 
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Name</td>
+                    <td>@p.UnitPrice</td>
+                    <td>@p.UnitsInStock</td>
+                    <td>@p.Discontinued</td>
+                    <td>
+                        <span>
+                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@p.Id">Detail</a>
+                        </span>
+                    </td>
+                    <td><span><a asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id">Edit</a></span></td>
+                    <td><span><a asp-controller="Product" asp-action="Delete" asp-route-id="@p.Id">Delete</a></span></td>
+
+                </tr> 
 
             }
         }

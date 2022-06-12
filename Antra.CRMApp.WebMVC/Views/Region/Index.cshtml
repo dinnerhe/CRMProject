@@ -5,6 +5,8 @@
       <tr>
           <th>Id</th>
           <th>Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
       </tr>
   </thead>
   <tbody>
@@ -13,6 +15,8 @@
             <tr>
                 <td>@m.Id</td>
                 <td>@m.Name</td>
+                <td><span><a asp-controller="Region" asp-action="Edit" asp-route-id="@m.Id">Edit</a></span></td>
+                <td><span><a asp-controller="Region" asp-action="Delete" asp-route-id="@m.Id">Delete</a></span></td>
             </tr>
         }
     </tbody>

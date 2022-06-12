@@ -39,6 +39,7 @@ namespace Antra.CRMApp.Infrastructure.Service
 
                 foreach (var item in colleciton) {
                     VendorResponseModel vendorModel = new VendorResponseModel();
+                    vendorModel.Id = item.Id;
                     vendorModel.Name = item.Name;
                     vendorModel.City = item.City;
                     vendorModel.Country = item.Country;
@@ -58,6 +59,7 @@ namespace Antra.CRMApp.Infrastructure.Service
             var item = await vendorRepository.GetByIdAsync(id);
             if (item != null) {
                 VendorResponseModel vendorModel = new VendorResponseModel();
+                vendorModel.Id = item.Id;
                 vendorModel.Name = item.Name;
                 vendorModel.City = item.City;
                 vendorModel.Country = item.Country;
@@ -75,6 +77,7 @@ namespace Antra.CRMApp.Infrastructure.Service
             if (item != null)
             {
                 VendorRequestModel vendorModel = new VendorRequestModel();
+                vendorModel.Id = item.Id;
                 vendorModel.Name = item.Name;
                 vendorModel.City = item.City;
                 vendorModel.Country = item.Country;
@@ -89,6 +92,7 @@ namespace Antra.CRMApp.Infrastructure.Service
         public async Task<int> UpdateVendorAsync(VendorRequestModel model)
         {
             Vendor vendor = new Vendor();
+            vendor.Id = model.Id;
             vendor.Name = model.Name;
             vendor.City = model.City;
             vendor.Country = model.Country;

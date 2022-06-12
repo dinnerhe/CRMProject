@@ -21,7 +21,8 @@ namespace Antra.CRMApp.WebMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var collection = await categoryService.GetAllAsync();
-            return View(collection);
+            if(collection != null) return View(collection);
+            return View(new List<CategoryModel>());
         }
         [HttpGet]
         public IActionResult Create() {
@@ -36,6 +37,30 @@ namespace Antra.CRMApp.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewBag.IsEdit = false;
+            var model = await categoryService.GetCategoryForEditAsync(id);
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(CategoryModel model)
+        {
+            ViewBag.IsEdit = false;
+            if (ModelState.IsValid)
+            {
+                await categoryService.UpdateCategoryAsync(model);
+                ViewBag.IsEdit = true;
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await categoryService.DeleteCategoryAsync(id);
+            return RedirectToAction("Index");
         }
 
     }

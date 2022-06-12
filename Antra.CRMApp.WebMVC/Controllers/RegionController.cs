@@ -14,7 +14,8 @@ namespace Antra.CRMApp.WebMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var result = await regionServiceAsync.GetAllAsync();
-            return View(result);
+            if(result != null) return View(result);
+            return View(new List<RegionModel>());
         }
 
         [HttpGet]
@@ -33,5 +34,30 @@ namespace Antra.CRMApp.WebMVC.Controllers
 
             return View(model);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id) {
+            ViewBag.IsEdit = false;
+            var model = await regionServiceAsync.GetByIdAsync(id);
+            return View(model);
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> Edit(RegionModel model)
+        {
+            ViewBag.IsEdit = false;
+            if (ModelState.IsValid)
+            {
+                await regionServiceAsync.UpdateRegionAsync(model);
+                ViewBag.IsEdit = true;
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await regionServiceAsync.DeleteRegionAsync(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

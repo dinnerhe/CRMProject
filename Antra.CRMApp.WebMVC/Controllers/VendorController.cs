@@ -21,7 +21,8 @@ namespace Antra.CRMApp.WebMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var collection = await vendorService.GetAllAsync();
-            return View(collection);
+            if(collection != null) return View(collection);
+            return View(new List<VendorResponseModel>());
         }
         [HttpGet]
         public IActionResult Create() {
@@ -34,6 +35,27 @@ namespace Antra.CRMApp.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id) {
+            ViewBag.IsEdit = false;
+            var model = await vendorService.GetVendorForEditAsync(id);
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(VendorRequestModel model)
+        {
+            ViewBag.IsEdit = false;
+            if (ModelState.IsValid) {
+                await vendorService.UpdateVendorAsync(model);
+                ViewBag.IsEdit = true;
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id) {
+            await vendorService.DeleteVendorAsync(id);
+            return RedirectToAction("Index");
         }
     }
 }

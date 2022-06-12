@@ -17,7 +17,6 @@ namespace Antra.CRMApp.Infrastructure.Service
         public async Task<int> AddCustomerAsync(CustomerRequestModel customer)
         {
             Customer c = new Customer();
-            c.Id = customer.Id;
             c.Name = customer.Name;
             c.Title = customer.Title;
             c.Address = customer.Address;
@@ -90,6 +89,7 @@ namespace Antra.CRMApp.Infrastructure.Service
                 model.PostalCode = customer.PostalCode;
                 model.Country = customer.Country;
                 model.Phone = customer.Phone;
+                model.City = customer.City;
                 return model;
             }
             return null;
