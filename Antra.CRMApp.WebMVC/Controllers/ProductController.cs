@@ -81,5 +81,14 @@ namespace Antra.CRMApp.WebMVC.Controllers
             await productService.DeleteProductAsync(id);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Detail(int id) {
+            var item = await productService.GetByIdAsync(id);
+            var category = await categoryService.GetByIdAsync(item.CategoryId);
+            var vendor = await vendorService.GetByIdAsync(item.VendorId);
+            ViewData["Category"] = category.Name;
+            ViewData["Vendor"] = vendor.Name;
+            return View(item);
+        }
     }
 }

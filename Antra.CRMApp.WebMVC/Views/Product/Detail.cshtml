@@ -3,4 +3,15 @@
 *@
 @{
 }
+@model ProductResponseModel
 <h1>Product Details</h1>
+<p>Name: @Model.Name</p>
+
+<p>Category: @ViewData["Category"]</p>
+<p>Vendor: @ViewData["Vendor"]</p>
+<p>Unit Price: @Model.UnitPrice</p>
+<p>Quantity Per Unit: @Model.QuantityPerUnit</p>
+<p>Units In Stock: @Model.UnitsInStock</p>
+<p>Units On Order: @Model.UnitsOnOrder</p>
+<p>Reorder Level: @Model.ReorderLevel</p>
+<p>Is Discontinued: @Model.Discontinued</p>
