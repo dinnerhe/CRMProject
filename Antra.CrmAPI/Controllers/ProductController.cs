@@ -25,7 +25,7 @@ namespace Antra.CrmAPI.Controllers
         }
 
         [HttpGet]
-        [Route("{id: int}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
             var item = await productService.GetByIdAsync(id);
