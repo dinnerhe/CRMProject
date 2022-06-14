@@ -3,12 +3,14 @@ using Antra.CRMApp.Core.Contract.Service;
 using Antra.CRMApp.Infrastructure.Data;
 using Antra.CRMApp.Infrastructure.Repository;
 using Antra.CRMApp.Infrastructure.Service;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Host.UseSerilog();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -47,6 +49,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else {
+    app.UseExceptionHandler(option => {
+        option.Run(async context =>
+        {
+            var ex = context.Features.Get<IExceptionHandlerFeature>();
+            if (ex != null) {
+                await context.Response.WriteAsync(ex.Error.Message);
+            }
+        });
+    });
+}
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
