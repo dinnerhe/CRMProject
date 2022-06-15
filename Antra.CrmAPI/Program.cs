@@ -1,3 +1,4 @@
+using Antra.CrmAPI.Middleware;
 using Antra.CRMApp.Core.Contract.Repository;
 using Antra.CRMApp.Core.Contract.Service;
 using Antra.CRMApp.Infrastructure.Data;
@@ -49,6 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+/*
 else {
     app.UseExceptionHandler(option => {
         option.Run(async context =>
@@ -60,7 +62,9 @@ else {
         });
     });
 }
+*/
 app.UseSerilogRequestLogging();
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 

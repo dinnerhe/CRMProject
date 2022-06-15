@@ -35,5 +35,9 @@
     <None Remove="Serilog.Extensions.Logging" />
     <None Remove="Serilog.Sinks.File" />
     <None Remove="Serilog.Formatting.Compact" />
+    <None Remove="Middleware\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Middleware\" />
   </ItemGroup>
 </Project>
