@@ -53,8 +53,10 @@ namespace Antra.CrmAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
          var result = await regionServiceAsync.DeleteRegionAsync(id);
-            if (result > 0)
-                return Ok("Region Deleted successfully");
+            if (result > 0) {
+                var response = new { Message = "Region Deleted Successfully" };
+                return Ok(response);
+            }
             return BadRequest();
         }
     }
