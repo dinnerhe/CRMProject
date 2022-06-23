@@ -35,7 +35,7 @@ namespace Antra.CrmAPI.Controllers
         
 
         [HttpPost]
-        public async Task<IActionResult> Post(CategoryModel model)
+        public async Task<IActionResult> Post([FromBody]CategoryModel model)
         {
             if (model == null) {
                 return BadRequest();
@@ -63,7 +63,10 @@ namespace Antra.CrmAPI.Controllers
         {
             var result = await categoryService.DeleteCategoryAsync(id);
             if (result > 0)
-                return Ok("Category Deleted successfully");
+            {
+                var response = new { Message = "Category Deleted Successfully" };
+                return Ok(response);
+            }
             return BadRequest();
         }
     }
