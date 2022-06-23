@@ -64,6 +64,7 @@ namespace Antra.CRMApp.Infrastructure.Service
                     model.City = item.City;
                     model.FullName = item.FirstName + " " + item.LastName;
                     model.TitleOfCourtesy = item.TitleOfCourtesy;
+                    model.HireDate = item.HireDate;
                     var region = await regionRepositoryAsync.GetByIdAsync(item.RegionId);
                     model.RegionName = region.Name;
                     result.Add(model);
@@ -113,6 +114,7 @@ namespace Antra.CRMApp.Infrastructure.Service
                 model.PostalCode = item.PostalCode;
                 model.Country = item.Country;
                 model.ReportsTo = item.ReportsTo;
+                model.HireDate = item.HireDate;
                 return model;
             }
             return null;

@@ -18,5 +18,6 @@ namespace Antra.CRMApp.Core.Model
         public string PhotoPath { get; set; }
         public string Phone { get; set; }
         public string RegionName { get; set; }
+        public DateTime HireDate { get; set; }
     }
 }

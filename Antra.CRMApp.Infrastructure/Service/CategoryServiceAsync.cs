@@ -20,6 +20,7 @@ namespace Antra.CRMApp.Infrastructure.Service
             Category category = new Category();
             category.Description = model.Description;
             category.Name = model.Name;
+            Console.WriteLine($"{category.Name}, {category.Description}");
             return await categoryRepository.InsertAsync(category);
         }
 

@@ -32,15 +32,21 @@ namespace Antra.CrmAPI.Controllers
                 return NotFound($"Category with Id = {id} is not available");
             return Ok(result);
         }
+        
 
         [HttpPost]
         public async Task<IActionResult> Post(CategoryModel model)
         {
+            if (model == null) {
+                return BadRequest();
+            }
             var result = await categoryService.AddCategoeyAsync(model);
             if (result > 0)
                 return Ok(model);
             return BadRequest();
         }
+        
+        
 
         [HttpPut]
         public async Task<IActionResult> Put(CategoryModel model)
