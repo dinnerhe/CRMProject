@@ -36,7 +36,7 @@ namespace Antra.CrmAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(VendorRequestModel model)
+        public async Task<IActionResult> Post([FromBody]VendorRequestModel model)
         {
             var result = await vendorService.AddVendorAsync(model);
             if (result > 0)
@@ -45,7 +45,7 @@ namespace Antra.CrmAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(VendorRequestModel model)
+        public async Task<IActionResult> Put([FromBody] VendorRequestModel model)
         {
             var result = await vendorService.UpdateVendorAsync(model);
             if (result > 0)
@@ -58,8 +58,11 @@ namespace Antra.CrmAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await vendorService.DeleteVendorAsync(id);
-            if (result > 0)
-                return Ok("Vendor Deleted successfully");
+            if (result > 0) {
+                string message = "Vendor Deleted successfully";
+                return Ok(message);
+            }
+                
             return BadRequest();
         }
     }
