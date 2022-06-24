@@ -1,10 +1,12 @@
 using Antra.CrmAPI.Middleware;
 using Antra.CRMApp.Core.Contract.Repository;
 using Antra.CRMApp.Core.Contract.Service;
+using Antra.CRMApp.Core.Entity;
 using Antra.CRMApp.Infrastructure.Data;
 using Antra.CRMApp.Infrastructure.Repository;
 using Antra.CRMApp.Infrastructure.Service;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Serilog;
@@ -27,6 +29,8 @@ builder.Services.AddCors(options => {
 //builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionString("OnlineCRM"));
 //for vr database
 builder.Services.AddSqlServer<CrmDbContext>(builder.Configuration.GetConnectionString("VMCRM"));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<CrmDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IEmployeeRepositoryAsync, EmployeeRepositoryAsync>();
 builder.Services.AddScoped<IRegionRepositoryAsync, RegionRepositoryAsync>();
