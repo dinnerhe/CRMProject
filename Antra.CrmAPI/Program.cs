@@ -40,7 +40,7 @@ builder.Services.AddScoped<IVendorRepositoryAsync, VendorRepositoryAsync>();
 builder.Services.AddScoped<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
 builder.Services.AddScoped<IShipperRepositoryAsync, ShipperRepositoryAsync>();
 builder.Services.AddScoped<IOrderRepositoryAsync, OrderRepositoryAsync>();
-
+builder.Services.AddScoped<IAccountRepositoryAsync, AccountRepositoryAsync>();
 
 
 
@@ -51,6 +51,7 @@ builder.Services.AddScoped<IProductServiceAsync, ProductServiceAsync>();
 builder.Services.AddScoped<ICategoryServiceAsync, CategoryServiceAsync>();
 builder.Services.AddScoped<ICustomerServiceAsync, CustomerServiceAsync>();
 builder.Services.AddScoped<IVendorServiceAsync, VendorServiceAsync>();
+builder.Services.AddScoped<IAccountServiceAsync, AccountServiceAsync>();
 
 
 var app = builder.Build();
