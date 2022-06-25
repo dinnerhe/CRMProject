@@ -24,6 +24,7 @@ namespace Antra.CRMApp.Infrastructure.Repository
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.EmailId;
+            user.UserName = model.EmailId;
             return await _userManager.CreateAsync(user, model.Password);
         }
     }
