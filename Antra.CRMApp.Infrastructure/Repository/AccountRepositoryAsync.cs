@@ -1,26 +1,29 @@
-﻿using System;
+﻿using Antra.CRMApp.Core.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Antra.CRMApp.Core.Contract.Repository;
-using Antra.CRMApp.Core.Entity;
-using Antra.CRMApp.Core.Model;
 using Antra.CRMApp.Infrastructure.Data;
+using Antra.CRMApp.Core.Model;
 using Microsoft.AspNetCore.Identity;
 
 namespace Antra.CRMApp.Infrastructure.Repository
 {
-    public class AccountRepositoryAsync : IAccountRepositoryAsync
+    public class AccountRepositoryAsync : BaseRepository<SignupModel>, IAccountRepositoryAsync
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly CrmDbContext db;
-
-        public AccountRepositoryAsync(CrmDbContext _dbContext, UserManager<ApplicationUser> userManager)
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public AccountRepositoryAsync(CrmDbContext _dbContext, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager) : base(_dbContext)
         {
             _userManager = userManager;
-            db = _dbContext;
+            _signInManager = signInManager;
         }
 
-        public Task<SignInResult> SignIn(LoginModel login)
+        public async Task<SignInResult> SignInAsync(LoginModel login)
         {
-            throw new NotImplementedException();
+            return await _signInManager.PasswordSignInAsync(login.UserName, login.Password, false, false);
         }
 
         public async Task<IdentityResult> SignUpAsync(SignupModel model)
@@ -33,8 +36,4 @@ namespace Antra.CRMApp.Infrastructure.Repository
             return await _userManager.CreateAsync(user, model.Password);
         }
     }
-
-    
-	
 }
-
