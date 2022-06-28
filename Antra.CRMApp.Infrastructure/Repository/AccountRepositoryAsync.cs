@@ -18,6 +18,11 @@ namespace Antra.CRMApp.Infrastructure.Repository
             db = _dbContext;
         }
 
+        public Task<SignInResult> SignIn(LoginModel login)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IdentityResult> SignUpAsync(SignupModel model)
         {
             ApplicationUser user = new ApplicationUser();

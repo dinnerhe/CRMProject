@@ -26,5 +26,9 @@ namespace Antra.CrmAPI.Controllers
             }
             return Unauthorized();
         }
+
+        public Task<IActionResult> Login([FromBody] LoginModel model) {
+            return null;
+        }
     }
 }

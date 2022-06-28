@@ -14,6 +14,11 @@ namespace Antra.CRMApp.Infrastructure.Service
             accountRepositoryAsync = repo;
 		}
 
+        public Task<IdentityResult> SignInAsync(LoginModel model)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IdentityResult> SingUpAsync(SignupModel model)
         {
             return await accountRepositoryAsync.SignUpAsync(model);
